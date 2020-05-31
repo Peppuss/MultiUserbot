@@ -1,0 +1,5 @@
+{
+  "command": "search",
+  "description": "Searches the specified text and shows the first few results [/search Doge]",
+  "last_update": 1590789600
+}

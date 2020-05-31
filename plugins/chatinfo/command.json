@@ -1,0 +1,5 @@
+{
+  "command": "chatinfo",
+  "description": "It retrives informations about the chat. [/chatinfo]",
+  "last_update": 1590789600
+}

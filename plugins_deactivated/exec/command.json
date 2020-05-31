@@ -1,0 +1,5 @@
+{
+  "command": "exec",
+  "description": "In executes python code passed. Note that c is the Client object and msg is the Message object [/exec msg.reply('Test')]",
+  "last_update": 1590789600
+}

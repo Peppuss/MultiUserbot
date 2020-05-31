@@ -1,0 +1,5 @@
+{
+  "command": "short",
+  "description": "In reply, looks for links in the message and shorts them using tinyurl [/ban]",
+  "last_update": 1590789600
+}

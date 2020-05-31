@@ -1,0 +1,5 @@
+{
+  "command": "join",
+  "description": "Joins the specified chat (allowed @, usernames without @ and joinchat links) [/join username]",
+  "last_update": 1590789600
+}
