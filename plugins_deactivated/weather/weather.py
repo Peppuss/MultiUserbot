@@ -45,15 +45,20 @@ def weather_command(c, msg):
             "<b>Pressure</b>: {pressure}\n"
             "<b>Humidity</b>: {humidity}\n"
             "\n"
-            "<b>Wind Speed</b>: {winspeed}\n".format(emoji=Emoji.SUN_BEHIND_LARGE_CLOUD,
-                                                     name=response["name"],
-                                                     country=response["sys"]["country"],
-                                                     lon=response["coord"]["lon"],
-                                                     lat=response["coord"]["lat"],
-                                                     temp=round(response["main"]["temp"] - 273.15, 2),
-                                                     pressure=response["main"]["pressure"],
-                                                     humidity=response["main"]["humidity"],
-                                                     winspeed=response["wind"]["speed"])
+            "<b>Wind Speed</b>: {winspeed}\n"
+            "\n"
+            "<b>Weather</b>: {wmain}\n"
+            "<b>Description</b>: {wdescripion}\n".format(emoji=Emoji.SUN_BEHIND_LARGE_CLOUD,
+                                                         name=response["name"],
+                                                         country=response["sys"]["country"],
+                                                         lon=response["coord"]["lon"],
+                                                         lat=response["coord"]["lat"],
+                                                         temp=round(response["main"]["temp"] - 273.15, 2),
+                                                         pressure=response["main"]["pressure"],
+                                                         humidity=response["main"]["humidity"],
+                                                         winspeed=response["wind"]["speed"],
+                                                         wmain=response["weather"][0]["main"],
+                                                         wdescripion=response["weather"][0]["description"])
         )
     except NameError:
         msg.edit_text("City <i>{}</i> not found".format(target))
