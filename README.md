@@ -24,3 +24,4 @@ One of the most common errors is caused by the wrong version of python. Please c
 # Changelog
 - Changed the plugins directory
 - Finished /commands (now the text sent is based on the plugins active)
+- Added /weather
