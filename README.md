@@ -9,7 +9,7 @@ You can use this userbot to automate a lot of things.
 - Change directory
 > cd MultiUserbot
 - Install libraries
-> pip install requirements.txt
+> pip install -r requirements.txt
 - Go to [Telegram api page](https://my.telegram.org/apps) and get your api id and api hash
 - Open config.ini with your favourite editor and put your api id and api hash (line 2 and 3)
 - Run the bot
@@ -23,3 +23,7 @@ One of the most common errors is caused by the wrong version of python. Please c
 # Note
 This code is still buggy and not optimized at all, I'm still developing this.
 I'd suggest to wait until a "stable" release.
+
+# Contact me
+- [Telegram profile](https://t.me/GodSaveTheDoge)
+- [Telegram channel](https://t.me/GodSaveTheBots)
