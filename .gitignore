@@ -141,3 +141,11 @@ cython_debug/
 # Pyrogram session files
 *.session
 *.session-journal
+# tmp directory
+/tmp/
+.idea/
+VirtualEnv/bin/
+VirtualEnv/include/
+VirtualEnv/lib64
+VirtualEnv/pyvenv.cfg
+VirtualEnv/share/

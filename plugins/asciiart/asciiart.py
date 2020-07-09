@@ -8,10 +8,12 @@ from pyrogram import Message
 from main import prefixes
 
 ASCII_CHARSET = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]
+MAXWIDTH = 80
+MAXHEIGHT = 50
 
 
-def resize_width(image: PIL.Image, mwidth=80,
-                 mheight=50) -> PIL.Image:  # The limit is 101 characters, in mono on my machine :)
+def resize_width(image: PIL.Image, mwidth,
+                 mheight) -> PIL.Image:  # The limit is 101 characters, in mono on my machine :)
     width, height = image.size
     ratio = min(mwidth / width, mheight / height)
     return image.resize((int(width * ratio), int(height * ratio)))
@@ -46,7 +48,7 @@ def asciiart(c, msg):
     image = PIL.Image.open(filename)
 
     # resize the image
-    image: PIL.Image = resize_width(image)
+    image: PIL.Image = resize_width(image, MAXWIDTH, MAXHEIGHT)
 
     # convert it to grayscale
     image: PIL.Image = convert_grayscale(image)

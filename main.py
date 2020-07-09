@@ -9,6 +9,7 @@ if sys.version_info.minor < 7:
 from pyrogram import Client
 import os
 import configparser
+import shutil
 
 ubot = Client(
     "MultiUserbot",
@@ -24,7 +25,7 @@ if not os.path.exists("MultiUserbot.session"):
     print("Write /commands in a chat to see the commands avaiable!")
 
 if os.path.exists("tmp"):
-    os.removedirs("tmp")
+    shutil.rmtree("tmp", ignore_errors=True)
 
 if __name__ == "__main__":
     ubot.start()
