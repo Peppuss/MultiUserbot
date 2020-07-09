@@ -39,8 +39,8 @@ def generate_ascii_art(image: PIL.Image,
 def asciiart(c, msg):
     # Check if the message replied to is valid
     targetmsg: Message = msg.reply_to_message
-    if not targetmsg.photo:
-        msg.edit_text("Please reply to a photo!")
+    if not targetmsg.photo or targetmsg.sticker:
+        msg.edit_text("Please reply to a photo or a sticker!")
 
     # if so, download the photo and create image object
     filename = "tmp/" + "".join(random.choices(string.ascii_letters, k=30)) + ".image"
