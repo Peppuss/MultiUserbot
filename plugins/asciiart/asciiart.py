@@ -8,8 +8,8 @@ from pyrogram import Message
 from main import prefixes
 
 ASCII_CHARSET = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]
-MAXWIDTH = 80
-MAXHEIGHT = 50
+MAXWIDTH = 63
+MAXHEIGHT = 64
 
 
 def resize_width(image: PIL.Image, mwidth,
@@ -41,6 +41,7 @@ def asciiart(c, msg):
     targetmsg: Message = msg.reply_to_message
     if not targetmsg.photo or targetmsg.sticker:
         msg.edit_text("Please reply to a photo or a sticker!")
+        return 0
 
     # if so, download the photo and create image object
     filename = "tmp/" + "".join(random.choices(string.ascii_letters, k=30)) + ".image"
