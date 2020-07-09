@@ -1,5 +1,4 @@
 import configparser
-import json
 import os
 
 import requests
@@ -8,7 +7,7 @@ from pyrogram import Client, Filters, Emoji
 from main import prefixes
 
 config = configparser.ConfigParser()
-config.read(os.path.join(os.path.dirname(__name__), "apikey.ini"))
+config.read(os.path.join(os.path.dirname(__file__), "apikey.ini"))
 apikey = config['weather']['api_key']
 
 
@@ -20,17 +19,11 @@ def weather_command(c, msg):
         return 0
 
     target = " ".join(msg.command[1:])
-    dirname = os.path.dirname(__file__)
-    cities = json.load(open(os.path.join(dirname, "city.json")))
-
-    for city in cities:
-        if city["name"].lower() == target.lower():
-            cid = city["id"]
 
     try:
         # noinspection PyUnboundLocalVariable
         response = requests.get(
-            "https://api.openweathermap.org/data/2.5/weather?id={}&appid={}".format(cid, apikey)).json()
+            "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(target, apikey)).json()
         if response["cod"] != 200:
             msg.edit_text("Error while looking up the weather: {}".format(response["message"]))
             return 0
@@ -41,7 +34,7 @@ def weather_command(c, msg):
             "<b>Lon</b>: {lon}\n"
             "<b>Lat</b>: {lat}\n"
             "\n"
-            "<b>Temp</b>: {temp} (Celsius)\n"
+            "<b>Temp</b>: {temp}° C\n"
             "<b>Pressure</b>: {pressure}\n"
             "<b>Humidity</b>: {humidity}\n"
             "\n"
@@ -60,8 +53,6 @@ def weather_command(c, msg):
                                                          wmain=response["weather"][0]["main"],
                                                          wdescripion=response["weather"][0]["description"])
         )
-    except NameError:
-        msg.edit_text("City <i>{}</i> not found".format(target))
     except Exception as e:
-        print(e)
+        print(e)  # I'll use logging in the near future :)
         msg.edit_text("Something went wrong.")

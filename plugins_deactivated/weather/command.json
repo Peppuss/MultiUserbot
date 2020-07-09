@@ -1,5 +1,0 @@
-{
-  "command": "weather",
-  "description": "Looks up the weather for the specified city [/weather Roma]",
-  "last_update": 1590876000
-}

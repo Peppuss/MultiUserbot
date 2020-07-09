@@ -37,10 +37,11 @@ def paste_command(c, msg):
             return 0
     else:
         text = msg.reply_to_message.text
+    key = Nekobin.paste(text)
     msg.edit_text(f"{Emoji.GLOBE_WITH_MERIDIANS} Paste {Emoji.GLOBE_WITH_MERIDIANS}\n"
                   f"\n"
-                  f"{Emoji.LINK} Url: https://nekobin.com/{Nekobin.paste(text)}\n"
-                  f"{Emoji.INPUT_LATIN_UPPERCASE} Text: {text[0:100]}...\n"
+                  f"{Emoji.LINK} Url: https://nekobin.com/{key}\n"
+                  f"{Emoji.NEWSPAPER} Raw: https://nekobin.com/raw/{key} \n"
                   f"\n",
                   disable_web_page_preview=True
                   )
