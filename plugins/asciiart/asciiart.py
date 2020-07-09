@@ -39,7 +39,7 @@ def generate_ascii_art(image: PIL.Image,
 def asciiart(c, msg):
     # Check if the message replied to is valid
     targetmsg: Message = msg.reply_to_message
-    if not targetmsg.photo or targetmsg.sticker:
+    if not (targetmsg.photo or targetmsg.sticker):
         msg.edit_text("Please reply to a photo or a sticker!")
         return 0
 
