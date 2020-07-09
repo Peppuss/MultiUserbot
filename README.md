@@ -20,9 +20,9 @@ You can use this userbot to automate a lot of things.
 One of the most common errors is caused by the wrong version of python. Please check with `python -V` the version you have installed.
 (Before trying to install another version of python try using `python3` instead of `python` and `python3 -m pip` instead of `pip`)
 
-# Note
-This code is still buggy and not optimized at all, I'm still developing this.
-I'd suggest to wait until a "stable" release.
+# Notes
+- This code is still buggy and not optimized at all, I'm still developing this. I'd suggest to wait until a "stable" release.
+- Some plugins will create and use a "tmp" folder, you can delete it (when the bot is not running). If you do not do this it'll be delete on the startup anyway.
 
 # Contact me
 - [Telegram profile](https://t.me/GodSaveTheDoge)

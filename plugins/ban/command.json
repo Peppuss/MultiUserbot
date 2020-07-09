@@ -1,5 +1,4 @@
 {
   "command": "ban",
-  "description": "In reply it bans users in groups and in private it deletes their messages (without blocking them) [/ban]",
-  "last_update": 1590789600
+  "description": "In reply it bans users in groups and in private it deletes their messages (without blocking them) [/ban]"
 }

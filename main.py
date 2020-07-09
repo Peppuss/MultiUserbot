@@ -23,5 +23,8 @@ prefixes = list(config["prefixes"].keys())
 if not os.path.exists("MultiUserbot.session"):
     print("Write /commands in a chat to see the commands avaiable!")
 
+if os.path.exists("tmp"):
+    os.removedirs("tmp")
+
 if __name__ == "__main__":
     ubot.start()
