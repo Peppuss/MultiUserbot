@@ -1,12 +1,9 @@
-import configparser
 import json
 import os
 
 from pyrogram import Client, Filters
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 
 @Client.on_message(Filters.user("self") & Filters.command("commands", prefixes=prefixes))
@@ -30,6 +27,3 @@ def loadcommands():
                 })
 
     return commands
-
-
-print("[MultiUserbot] Loaded \"commands.py\" plugin")

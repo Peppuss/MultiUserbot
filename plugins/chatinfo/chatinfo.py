@@ -1,11 +1,8 @@
-import configparser
 from datetime import datetime
 
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 chatinfo_message = {"id": f"{Emoji.ID_BUTTON} <b>Id</b>: <code>[%id%]</code>",
                     "type": f"{Emoji.JAPANESE_SYMBOL_FOR_BEGINNER} <b>Type</b>: <code>[%type%]</code>",
@@ -53,8 +50,5 @@ def chatinfo_command(c, msg):
     bio = c.get_chat(target.id).description
     if bio:
         message += chatinfo_message["bio"].replace("[%bio%]", c.get_chat(target.id).description)
-    message += f"\n\n<a href=\"tg://user?id={target.id}\">Profile Link</a>"
+    message += f"\n\n<a href=\"https://t.me/c/{target.id if not str(target.id).startswith('-') else (str(target.id)[1:] if not str(target.id).startswith('-100') else str(target.id)[4:])}/1\">Chat Link</a> "
     msg.edit_text(message)
-
-
-print("[MultiUserbot] Loaded \"chatinfo.py\" plugin")

@@ -5,14 +5,14 @@ import os
 import requests
 from pyrogram import Client, Filters, Emoji
 
+from main import prefixes
+
 config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
-
-config.read(os.path.join(os.path.dirname(__file__), "apikey.ini"))
-apikey = config["weather"]["api_key"]
+config.read(os.path.join(os.path.dirname(__name__), "apikey.ini"))
+apikey = config['weather']['api_key']
 
 
+# This is not the best choice, I should directly use the api
 @Client.on_message(Filters.user("self") & Filters.command("weather", prefixes=prefixes))
 def weather_command(c, msg):
     if len(msg.command) < 2:
@@ -65,6 +65,3 @@ def weather_command(c, msg):
     except Exception as e:
         print(e)
         msg.edit_text("Something went wrong.")
-
-
-print("[MultiUserbot] Loaded \"weather.py\" plugin")

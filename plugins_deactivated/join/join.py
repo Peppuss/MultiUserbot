@@ -1,10 +1,6 @@
-import configparser
-
 from pyrogram import Client, Filters
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 
 @Client.on_message(Filters.user("self") & Filters.command("join", prefixes=prefixes))
@@ -18,6 +14,3 @@ def join_command(c, msg):
         msg.edit_text("Could not join chat.\n{}".format(e))
     else:
         msg.edit_text("Joined.")
-
-
-print("[MultiUserbot] Loaded \"join.py\" plugin")

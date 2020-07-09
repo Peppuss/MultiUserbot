@@ -1,13 +1,10 @@
-import configparser
 import urllib.parse
 
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 
 class Bing:
@@ -51,6 +48,3 @@ def search_command(c, msg):
         msg.edit_text(message, disable_web_page_preview=True)
     else:
         msg.edit_text("Nothing Found")
-
-
-print("[MultiUserbot] Loaded \"search.py\" plugin")

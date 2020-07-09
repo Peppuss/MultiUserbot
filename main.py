@@ -1,4 +1,4 @@
-# MultiUserbot v 2.1
+# MultiUserbot by GodSaveTheDoge
 # Github: https://github.com/GodSaveTheDoge/MultiUserbot
 
 import sys
@@ -8,12 +8,20 @@ if sys.version_info.minor < 7:
 
 from pyrogram import Client
 import os
+import configparser
 
-bot = Client(
+ubot = Client(
     "MultiUserbot",
     config_file="config.ini")
+
+config = configparser.ConfigParser()
+config.read("config.ini")
+prefixes = list(config["prefixes"].keys())
+# This is an easy way to have the prefixes in the config file
+# Later prefixes will be imported in the plugins
 
 if not os.path.exists("MultiUserbot.session"):
     print("Write /commands in a chat to see the commands avaiable!")
 
-bot.start()
+if __name__ == "__main__":
+    ubot.start()

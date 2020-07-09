@@ -1,31 +1,7 @@
-import configparser
-
-import requests
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
-
-
-class DelDog:
-    def __init__(self):
-        self.__author__ = "GodSaveTheDoge"
-        self.url = "https://del.dog/documents?frontend=true"
-        self.headers = {
-            "User-Agent": "Opera/8.71 (Windows CE; en-US) Presto/2.9.167 Version/11.00",
-            "Content-Type": "application/json; charset=utf-8",
-            "Connection": "close",
-            "Host": "del.dog"
-        }
-
-    def paste(self, text, slug=""):
-        return "https://del.dog/{}".format(requests.post(
-            self.url,
-            headers=self.headers,
-            data=('{"content":"' + text + '", "slug":"' + slug + '"}').encode("utf-8")
-        ).json()["key"])
-
+from main import prefixes
+from methods.DelDog import DelDog
 
 DelDog = DelDog()
 
@@ -48,6 +24,3 @@ def paste_command(c, msg):
                   f"\n",
                   disable_web_page_preview=True
                   )
-
-
-print("[MultiUserbot] Loaded \"paste.py\" plugin")

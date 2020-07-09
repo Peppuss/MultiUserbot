@@ -16,12 +16,10 @@ You can use this userbot to automate a lot of things.
 > python main.py 
 
 
-# Common errors
+# Common error
 One of the most common errors is caused by the wrong version of python. Please check with `python -V` the version you have installed.
 (Before trying to install another version of python try using `python3` instead of `python` and `python3 -m pip` instead of `pip`)
 
-
-# Changelog
-- Changed the plugins directory
-- Finished /commands (now the text sent is based on the plugins active)
-- Added /weather
+# Note
+This code is still buggy and not optimized at all, I'm still developing this.
+I'd suggest to wait until a "stable" release.

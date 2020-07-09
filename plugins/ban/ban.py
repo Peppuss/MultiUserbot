@@ -1,11 +1,8 @@
-import configparser
 import time
 
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 banned = Filters.user()
 to_delete = {}
@@ -82,6 +79,3 @@ def unban_command_group(c, msg):
             msg.edit_text("{} Unbanned {}".format(Emoji.HEAVY_CHECK_MARK, target))
     else:
         msg.edit_text("Not enough permissions")
-
-
-print("[MultiUserbot] Loaded \"ban.py\" plugin")

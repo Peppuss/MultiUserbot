@@ -1,13 +1,9 @@
 # This might not work all the times.
 
-import configparser
-
 import requests
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 
 class Nekobin:
@@ -48,6 +44,3 @@ def paste_command(c, msg):
                   f"\n",
                   disable_web_page_preview=True
                   )
-
-
-print("[MultiUserbot] Loaded \"paste_nekobin.py\" plugin")

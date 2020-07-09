@@ -1,12 +1,8 @@
-import configparser
-
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 
 def extracturls(msg):
@@ -58,6 +54,3 @@ def short_command(c, msg):
                        f"{Emoji.WHITE_HEAVY_CHECK_MARK} {tinyurl(u)}\n"
     msg.edit_text(message,
                   disable_web_page_preview=True)
-
-
-print("[MultiUserbot] Loaded \"short.py\" plugin")

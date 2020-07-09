@@ -1,12 +1,13 @@
-import configparser
+import html
 import sys
 import traceback
 
 from pyrogram import Client, Filters
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
+from methods.DelDog import DelDog
+
+DelDog = DelDog()
 
 
 @Client.on_message(Filters.user("self") & Filters.command("eval", prefixes=prefixes))
@@ -14,17 +15,21 @@ def eval_command(c, msg):
     if len(msg.command) < 2:
         msg.edit_text("Please use: <code>/eval msg.reply(some python code)</code>\nNote: Client = c, Message = msg")
         return 0
-    null = None
-    code = " ".join(msg.command[1:])
+    code = msg.text.html[len("/eval "):]
     try:
         result = eval(code)
     except Exception as e:
         result = "".join(traceback.format_exception(e, e, sys.exc_info()[2]))
     try:
-        msg.edit_text("<b>Code:</b>\n<code>{}</code>\n\n<b>Result:</b>\n<code>{}</code>".format(str(code)[:1000],
-                                                                                                str(result)[:2000]))
+        if len(code + str(result)) > 2000:
+            msg.edit_text("Uploading to del.dog...")
+            msg.edit_text("<b>Code:</b>\n{pasted}\n\n<b>Result:</b>\n{pasted}".format(
+                pasted="Too long! <a href=\"{url}\">Pasted</a>".format(url=DelDog.paste(
+                    "Code:\n{}\n\nResult:\n{}".format(str(code), str(result))
+                ))))
+        else:
+            msg.edit_text("<b>Code:</b>\n<code>{}</code>\n\n<b>Result:</b>\n<code>{}</code>".format(
+                html.escape(str(code)[:1000]),
+                html.escape(str(result)[:2000])), parse_mode="html")
     except Exception as e:
         msg.edit_text(str(e))
-
-
-print("[MultiUserbot] Loaded \"eval.py\" plugin")

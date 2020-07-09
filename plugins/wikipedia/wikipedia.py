@@ -1,12 +1,8 @@
-import configparser
-
 import requests
 from bs4 import BeautifulSoup
 from pyrogram import Client, Filters
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 
 class Wikipedia:
@@ -61,6 +57,3 @@ def wikipedialang_command(c, msg):
     if len(msg.command) < 2:
         msg.edit_text("Please use <code>/wikipedialang en</code>")
     language = msg.command[1]
-
-
-print("[MultiUserbot] Loaded \"wikipedia.py\" plugin")

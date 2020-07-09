@@ -1,11 +1,8 @@
-import configparser
 from datetime import datetime
 
 from pyrogram import Client, Filters, Emoji
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-prefixes = list(config["prefixes"].keys())
+from main import prefixes
 
 info_message = {"id": f"{Emoji.ID_BUTTON} <b>Id</b>: <code>[%id%]</code>",
                 "first_name": f"{Emoji.BLOND_HAIRED_MAN_LIGHT_SKIN_TONE} <b>Name</b>: <code>[%first_name%]</code>",
@@ -53,6 +50,3 @@ def info_command_reply(c, msg):
         message += info_message["bio"].replace("[%bio%]", c.get_chat(target.id).description)
     message += f"\n\n<a href=\"tg://user?id={target.id}\">Profile Link</a>"
     msg.edit_text(message)
-
-
-print("[MultiUserbot] Loaded \"info.py\" plugin")
