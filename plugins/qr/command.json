@@ -1,0 +1,6 @@
+[
+  {
+    "command": "qr",
+    "description": "In reply, it makes a qr (you can specify what the text with /qr Text too!)[/qr]"
+  }
+]

@@ -29,16 +29,14 @@ def loadcommands():
             if "".join(os.path.splitext(filename)[-2:]) == "command.json":
                 j = json.load(open(dirpath + "/" + filename))
                 for i in j:
-                    commands.append({
-                        "command": i["command"],
-                        "description": i["description"]
-                    })
+                    commands.append(i)
 
     return commands
 
 
 commands = loadcommands()
 command_list = ["<b>" + d["command"] + "</b> - <pre>" + d["description"] + "</pre>" for d in commands]
+
 commands_pages = []
 cnt = 0
 while True:

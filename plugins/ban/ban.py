@@ -69,6 +69,7 @@ def unban_command_group(c, msg):
     else:
         msg.edit_text("Please use <code>/unban User</code> or reply to a message.")
         return 0
+
     if c.get_chat_member(msg.chat.id, "self").status == "creator" or c.get_chat_member(msg.chat.id,
                                                                                        "self").can_restrict_members:
         try:
