@@ -6,10 +6,20 @@ from pyrogram import Client, Filters
 from main import prefixes
 
 
-@Client.on_message(Filters.user("self") & Filters.command("commands", prefixes=prefixes))
+@Client.on_message(Filters.user("self") & (
+        Filters.command("commands", prefixes=prefixes) | Filters.command("help", prefixes=prefixes)))
 def commands_command(c, msg):
+    page = 0
+    if len(msg.command) > 1:
+        try:
+            page = int(msg.command[1]) - 1
+        except ValueError:
+            msg.edit_text("Not a valid page.")
     commands = loadcommands()
-    msg.edit_text(commands_text)
+    try:
+        msg.edit_text(commands_pages[page])
+    except IndexError:
+        msg.edit_text("There are only {} pages!".format(len(commands_pages)))
 
 
 def loadcommands():
@@ -28,7 +38,20 @@ def loadcommands():
 
 
 commands = loadcommands()
-commands_text = f"Avaiable Commands:\n" \
-                f"\n" + \
-                f"\n".join(["<b>" + d["command"] + "</b> - <pre>" + d["description"] + "</pre>" for d in commands]) + \
-                f"\n\nPrefixes: {' '.join(prefixes)}"
+command_list = ["<b>" + d["command"] + "</b> - <pre>" + d["description"] + "</pre>" for d in commands]
+commands_pages = []
+cnt = 0
+while True:
+    text = f"Avaiable Commands:\n\n"
+    for command in command_list[cnt:]:
+        if len(text) > 1500:
+            break
+        text += command + "\n"
+        cnt += 1
+    else:
+        text += f"\n\nPrefixes: {' '.join(prefixes)}\n"
+        commands_pages.append(text)
+        break
+    text += f"\n\nPrefixes: {' '.join(prefixes)}\n" \
+            f"Use <code>/help {len(commands_pages) + 2}</code> for the next page"
+    commands_pages.append(text)
