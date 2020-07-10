@@ -1,4 +1,6 @@
-{
-  "command": "paste",
-  "description": "In reply it pastes the message text using nekobin.com [/paste]"
-}
+[
+  {
+    "command": "paste",
+    "description": "In reply it pastes the message text using nekobin.com [/paste]"
+  }
+]

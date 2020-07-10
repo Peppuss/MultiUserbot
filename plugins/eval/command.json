@@ -1,5 +1,7 @@
-{
-  "command": "eval",
-  "description": "It evalutes the input passed. [/eval 2+2]",
-  "last_update": 1590789600
-}
+[
+  {
+    "command": "eval",
+    "description": "It evalutes the input passed. [/eval 2+2]",
+    "last_update": 1590789600
+  }
+]

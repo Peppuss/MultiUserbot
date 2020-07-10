@@ -1,5 +1,6 @@
-{
-  "command": "wikipedia",
-  "description": "Sends the specified wikipedia page. You can change the default language (en) with <code>wikipedialang</code> [/wikipedia Doge_(meme)] [/wikipedialang en]",
-  "last_update": 1590789600
-}
+[
+  {
+    "command": "wikipedia",
+    "description": "Sends the specified wikipedia page. You can change the default language (en) with <code>wikipedialang</code> [/wikipedia Doge_(meme)] [/wikipedialang en]"
+  }
+]

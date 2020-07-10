@@ -1,4 +1,6 @@
-{
-  "command": "save",
-  "description": "In reply, forwards the message in the saved messages [/ban]"
-}
+[
+  {
+    "command": "save",
+    "description": "In reply, forwards the message in the saved messages [/ban]"
+  }
+]

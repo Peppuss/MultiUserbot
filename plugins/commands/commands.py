@@ -18,10 +18,11 @@ def loadcommands():
         for filename in filenames:
             if "".join(os.path.splitext(filename)[-2:]) == "command.json":
                 j = json.load(open(dirpath + "/" + filename))
-                commands.append({
-                    "command": j["command"],
-                    "description": j["description"]
-                })
+                for i in j:
+                    commands.append({
+                        "command": i["command"],
+                        "description": i["description"]
+                    })
 
     return commands
 

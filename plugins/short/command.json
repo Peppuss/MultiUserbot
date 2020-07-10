@@ -1,4 +1,6 @@
-{
-  "command": "short",
-  "description": "In reply, looks for links in the message and shorts them using tinyurl [/short]"
-}
+[
+  {
+    "command": "short",
+    "description": "In reply, looks for links in the message and shorts them using tinyurl [/short]"
+  }
+]

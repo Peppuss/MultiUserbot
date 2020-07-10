@@ -1,5 +1,6 @@
-{
-  "command": "leave",
-  "description": "Leaves the chat [/leave]",
-  "last_update": 1590789600
-}
+[
+  {
+    "command": "leave",
+    "description": "Leaves the chat [/leave]"
+  }
+]

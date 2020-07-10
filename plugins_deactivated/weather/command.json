@@ -1,4 +1,6 @@
-{
-  "command": "weather",
-  "description": "Looks up the weather for the specified city [/weather Roma]"
-}
+[
+  {
+    "command": "weather",
+    "description": "Looks up the weather for the specified city [/weather Roma]"
+  }
+]

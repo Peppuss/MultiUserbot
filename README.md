@@ -12,6 +12,7 @@ You can use this userbot to automate a lot of things.
 > pip install -r requirements.txt
 - Go to [Telegram api page](https://my.telegram.org/apps) and get your api id and api hash
 - Open config.ini with your favourite editor and put your api id and api hash (line 2 and 3)
+- Read [How To Use Plugins](plugins/HowToUsePlugins.md)
 - Run the bot
 > python main.py 
 

@@ -1,5 +1,6 @@
-{
-  "command": "info",
-  "description": "In reply, it shows user informations. [/info]",
-  "last_update": 1590789600
-}
+[
+  {
+    "command": "info",
+    "description": "In reply, it shows user informations. [/info]"
+  }
+]

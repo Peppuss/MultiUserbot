@@ -1,5 +1,6 @@
-{
-  "command": "show",
-  "description": "Edits the message slowly writing the specified text [/show Doge is cool]",
-  "last_update": 1590789600
-}
+[
+  {
+    "command": "show",
+    "description": "Edits the message slowly writing the specified text [/show Doge is cool]"
+  }
+]

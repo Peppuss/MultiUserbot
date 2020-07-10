@@ -1,4 +1,6 @@
-{
-  "command": "paste",
-  "description": "In reply it pastes the message text using del.dog [/paste]"
-}
+[
+  {
+    "command": "paste",
+    "description": "In reply it pastes the message text using del.dog [/paste]"
+  }
+]

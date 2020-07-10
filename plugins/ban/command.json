@@ -1,4 +1,6 @@
-{
-  "command": "ban",
-  "description": "In reply it bans users in groups and in private it deletes their messages (without blocking them) [/ban]"
-}
+[
+  {
+    "command": "ban",
+    "description": "In reply it bans users in groups and in private it deletes their messages (without blocking them) [/ban]"
+  }
+]
