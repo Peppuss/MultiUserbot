@@ -8,6 +8,8 @@ You can use this userbot to automate a lot of things.
 > git clone https://github.com/GodSaveTheDoge/MultiUserbot.git
 - Change directory
 > cd MultiUserbot
+- Install wheel
+> pip install wheel
 - Install libraries
 > pip install -r requirements.txt
 - Go to [Telegram api page](https://my.telegram.org/apps) and get your api id and api hash
