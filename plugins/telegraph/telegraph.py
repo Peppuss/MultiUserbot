@@ -35,9 +35,9 @@ def telegraph(c: Client, msg: Message):
         )
 
     nodes = utils.html_to_nodes(text.replace("'", "\\u0027"))  # unicode escape
-    content = "[" + "".join(['{{"tag": "p", "children": [{}]}},'.format(i if type(i) != str else i.__repr__()) for i in
+    content = "[" + "".join(['{{"tag": "p", "children": [{}]}},'.format(i if type(i) != str else f'"{i}"') for i in
                              nodes[:-1]]) + '{{"tag": "p", "children": [{}]}}'.format(
-        nodes[-1] if type(nodes[-1]) != str else nodes[-1].__repr__()) + "]"
+        nodes[-1] if type(nodes[-1]) != str else f'"{nodes[-1]}"') + "]"
 
     files = {"Data": ("content.html", io.BytesIO(content.replace("'", "\"").encode()), "plain/text")}
     data = {
