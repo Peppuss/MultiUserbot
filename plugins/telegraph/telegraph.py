@@ -15,7 +15,7 @@ HEADERS = {
 def telegraph(c: Client, msg: Message):
     if len(msg.command) > 1:
         targetmsg = msg
-        text = targetmsg.text[len("/telegraph"):]
+        text = targetmsg.text[len("/telegraph"):] or targetmsg.caption[len("/telegraph"):]
         author = targetmsg.from_user.first_name
         title = (msg.chat.username or msg.chat.title or msg.chat.first_name)
     elif msg.reply_to_message:
@@ -34,7 +34,15 @@ def telegraph(c: Client, msg: Message):
             f"{Emoji.CROSS_MARK} <b>Error:</b> <code>Invalid message</code>"
         )
 
-    nodes = utils.html_to_nodes(text.replace("'", "\\u0027"))  # unicode escape
+    nodes = utils.html_to_nodes(text.replace("'", "\\u0027"))
+
+    if len(nodes) == 0:
+        msg.edit_text(
+            f"{Emoji.NEWSPAPER} Telegraph\n"
+            f"\n"
+            f"{Emoji.CROSS_MARK} <b>Error:</b> <code>Invalid text!</code>"
+        )
+
     content = "[" + "".join(['{{"tag": "p", "children": [{}]}},'.format(i if type(i) != str else f'"{i}"') for i in
                              nodes[:-1]]) + '{{"tag": "p", "children": [{}]}}'.format(
         nodes[-1] if type(nodes[-1]) != str else f'"{nodes[-1]}"') + "]"

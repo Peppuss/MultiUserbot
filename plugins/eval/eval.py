@@ -5,9 +5,9 @@ import traceback
 from pyrogram import Client, Filters
 
 from main import prefixes
-from methods.DelDog import DelDog
+from methods.Nekobin import Nekobin
 
-DelDog = DelDog()
+Nekobin = Nekobin()
 
 
 @Client.on_message(Filters.user("self") & Filters.command("eval", prefixes=prefixes))
@@ -22,9 +22,9 @@ def eval_command(c, msg):
         result = "".join(traceback.format_exception(e, e, sys.exc_info()[2]))
     try:
         if len(code + str(result)) > 2000:
-            msg.edit_text("Uploading to del.dog...")
+            msg.edit_text("Uploading to nekobin...")
             msg.edit_text("<b>Code:</b>\n{pasted}\n\n<b>Result:</b>\n{pasted}".format(
-                pasted="Too long! <a href=\"{url}\">Pasted</a>".format(url=DelDog.paste(
+                pasted="Too long! <a href=\"https://nekobin.com/{url}\">Pasted</a>".format(url=Nekobin.paste(
                     "Code:\n{}\n\nResult:\n{}".format(str(code), str(result))
                 ))))
         else:

@@ -7,7 +7,7 @@ from pyrogram import Message
 
 from main import prefixes
 
-ASCII_CHARSET = ["@", "#", "O", "$", "%", "?", "o", "*", "+", ";", ":", ",", ".", " "]
+ASCII_CHARSET = ["█", "@", "#", "O", "$", "%", "?", "o", "*", "+", ";", ":", ",", ".", " "]
 MAXWIDTH = 63
 MAXHEIGHT = 64
 

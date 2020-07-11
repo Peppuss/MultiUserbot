@@ -1,42 +1,35 @@
-# This might not work all the times.
+import random
+import string
 
-import requests
-from pyrogram import Client, Filters, Emoji
+from pyrogram import Client, Filters, Emoji, Message
 
 from main import prefixes
-
-
-class Nekobin:
-    def __init__(self):
-        self.__author__ = "GodSaveTheDoge"
-        self.baseurl = "https://nekobin.com/"
-        self.session = requests.session()
-
-    def paste(self, text):
-        r = self.session.post(
-            self.baseurl + "api/documents",
-            data={"content": text}
-        )
-        try:
-            return r.json()["result"]["key"]
-        except Exception as e:
-            return e
-
+from methods.Nekobin import Nekobin
 
 Nekobin = Nekobin()
 
 
 @Client.on_message(Filters.user("self") & Filters.command("paste", prefixes=prefixes) & Filters.reply)
-def paste_command(c, msg):
+def paste_command(c: Client, msg: Message):
     msg.edit_text("Pasting...")
-    if not msg.reply_to_message.text:
-        if msg.reply_to_message.caption:
-            text = msg.reply_to_message.caption
-        else:
-            msg.edit_text("Please reply to a message with some text")
-            return 0
+    if msg.reply_to_message.document:
+
+        path = "tmp/{}".format("".join(random.choices(string.ascii_letters, k=30)))
+        msg.reply_to_message.download(file_name=path)
+
+        try:
+            text = open(path).read()
+        except UnicodeDecodeError:
+            msg.edit_text("Please reply to a document or a message with some text")
+            return 1
+
     else:
-        text = msg.reply_to_message.text
+        text = msg.reply_to_message.text or msg.reply_to_message.caption
+
+    if not text:
+        msg.edit_text("Please reply to a document or a message with some text")
+        return 1
+
     key = Nekobin.paste(text)
     msg.edit_text(f"{Emoji.GLOBE_WITH_MERIDIANS} Paste {Emoji.GLOBE_WITH_MERIDIANS}\n"
                   f"\n"
