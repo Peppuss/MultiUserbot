@@ -1,0 +1,6 @@
+[
+  {
+    "command": "telegraph",
+    "description": "In reply, post the message to telegra.ph (you can specify the text with /telegraph Text) [/telegraph]"
+  }
+]

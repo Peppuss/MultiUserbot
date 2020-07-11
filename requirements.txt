@@ -6,3 +6,4 @@ TgCrypto~=1.2.1
 pathlib~=1.0.1
 beautifulsoup4~=4.9.1
 Pillow~=7.2.0
+telegraph~=1.4.1
