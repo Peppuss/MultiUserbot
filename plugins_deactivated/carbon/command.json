@@ -1,0 +1,6 @@
+[
+  {
+    "command": "carbon",
+    "description": "In reply, it shows the code on carbon.now.sh (you can specify the code with /carbon Your Text) [/carbon]"
+  }
+]
