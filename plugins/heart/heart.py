@@ -15,10 +15,11 @@ HEARTS = [
 ]
 TIMEOUT = 0.3
 NUM = 50  # 10 seconds, should be good
+SPACE = b"\xe2\x80\x8c".decode()
 
 
 @Client.on_message(Filters.me & Filters.command("heart", prefixes=prefixes))
 def heart(c, msg):
     for _ in range(NUM):
-        msg.edit_text(HEARTS[_ // len(HEARTS) + _ % len(HEARTS)] * 2)
+        msg.edit_text(SPACE + HEARTS[_ % len(HEARTS)])
         time.sleep(TIMEOUT)
