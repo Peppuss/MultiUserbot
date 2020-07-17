@@ -25,6 +25,8 @@ prefixes = list(config["prefixes"].keys())
 if os.path.exists("tmp"):
     shutil.rmtree("tmp", ignore_errors=True)
 
+os.mkdir("tmp")
+
 if __name__ == "__main__":
     logging.basicConfig(
         format="[%(levelname)s %(asctime)s] In module %(module)s, function %(funcName)s at line %(lineno)d -> %("

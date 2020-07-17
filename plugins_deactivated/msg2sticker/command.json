@@ -1,0 +1,6 @@
+[
+  {
+    "command": "msg2sticker",
+    "description": "In reply, sends a message as a sticker [/msg2sticker]"
+  }
+]
