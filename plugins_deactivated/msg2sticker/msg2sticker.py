@@ -31,7 +31,9 @@ OPTIONS.headless = True
 CSS_SELECTOR = "div.tgme_widget_message.js-widget_message"
 
 
-@Client.on_message(Filters.me & Filters.reply & Filters.command("msg2sticker", prefixes=prefixes))
+@Client.on_message(
+    Filters.me & Filters.reply & Filters.command("msg2sticker", prefixes=prefixes)
+)
 def msg2sticker(c: Client, msg: Message):
     targetmsg = msg.reply_to_message
 
@@ -50,7 +52,11 @@ def msg2sticker(c: Client, msg: Message):
 
     msg.edit_text("Reaching https://telegram.me/...", disable_web_page_preview=True)
 
-    driver.get("https://t.me/{}/{}?embed=1".format(targetmsg.chat.username, targetmsg.message_id))
+    driver.get(
+        "https://t.me/{}/{}?embed=1".format(
+            targetmsg.chat.username, targetmsg.message_id
+        )
+    )
 
     element = driver.find_element_by_css_selector(CSS_SELECTOR)
 
@@ -66,21 +72,13 @@ def msg2sticker(c: Client, msg: Message):
     driver.quit()
     msg.edit_text("Sending sticker...")
 
-    c.send_sticker(
-        msg.chat.id,
-        path,
-        reply_to_message_id=targetmsg.message_id
-    )
+    c.send_sticker(msg.chat.id, path, reply_to_message_id=targetmsg.message_id)
 
     if SEND_PHOTO:
         path = "tmp/" + "".join(random.choices(string.ascii_letters, k=40)) + ".png"
 
         image.save(path, "png")
 
-        c.send_photo(
-            msg.chat.id,
-            path,
-            reply_to_message_id=targetmsg.message_id
-        )
+        c.send_photo(msg.chat.id, path, reply_to_message_id=targetmsg.message_id)
 
     msg.delete()

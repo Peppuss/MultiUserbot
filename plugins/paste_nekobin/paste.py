@@ -9,7 +9,9 @@ from methods.Nekobin import Nekobin
 Nekobin = Nekobin()
 
 
-@Client.on_message(Filters.user("self") & Filters.command("paste", prefixes=prefixes) & Filters.reply)
+@Client.on_message(
+    Filters.user("self") & Filters.command("paste", prefixes=prefixes) & Filters.reply
+)
 def paste_command(c: Client, msg: Message):
     msg.edit_text("Pasting...")
     if msg.reply_to_message.document:
@@ -31,10 +33,11 @@ def paste_command(c: Client, msg: Message):
         return 1
 
     key = Nekobin.paste(text)
-    msg.edit_text(f"{Emoji.GLOBE_WITH_MERIDIANS} Paste {Emoji.GLOBE_WITH_MERIDIANS}\n"
-                  f"\n"
-                  f"{Emoji.LINK} Url: https://nekobin.com/{key}\n"
-                  f"{Emoji.NEWSPAPER} Raw: https://nekobin.com/raw/{key} \n"
-                  f"\n",
-                  disable_web_page_preview=True
-                  )
+    msg.edit_text(
+        f"{Emoji.GLOBE_WITH_MERIDIANS} Paste {Emoji.GLOBE_WITH_MERIDIANS}\n"
+        f"\n"
+        f"{Emoji.LINK} Url: https://nekobin.com/{key}\n"
+        f"{Emoji.NEWSPAPER} Raw: https://nekobin.com/raw/{key} \n"
+        f"\n",
+        disable_web_page_preview=True,
+    )

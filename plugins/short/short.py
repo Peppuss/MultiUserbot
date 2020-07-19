@@ -20,18 +20,16 @@ def extracturls(msg):
         if e.type == "text_link":
             results.append(e.url)
         elif e.type == "url":
-            results.append(text[e.offset:e.offset + e.length])
+            results.append(text[e.offset: e.offset + e.length])
     return results
 
 
 def tinyurl(url, alias=""):
     e = BeautifulSoup(
-        requests.get("https://tinyurl.com/create.php",
-                     params={
-                         "url": url,
-                         "alias": alias
-                     }).text,
-        "lxml"
+        requests.get(
+            "https://tinyurl.com/create.php", params={"url": url, "alias": alias}
+        ).text,
+        "lxml",
     ).select("div.indent:nth-child(4) > b:nth-child(1)")
     if len(e) >= 1:
         return e[0].text
@@ -42,6 +40,7 @@ def tinyurl(url, alias=""):
 
 # Filters.user("self") &
 
+
 @Client.on_message(Filters.reply & Filters.command("short", prefixes=prefixes))
 def short_command(c, msg):
     msg.edit_text("Shortening...")
@@ -50,7 +49,8 @@ def short_command(c, msg):
     message = f"{Emoji.LINK} Shortener {Emoji.LINK}\n\n{Emoji.GLOBE_WITH_MERIDIANS} Results:\n"
     for u in urls:
         if u.startswith("http"):
-            message += f"{Emoji.HEAVY_MINUS_SIGN} {u[:25]}\n" \
-                       f"{Emoji.WHITE_HEAVY_CHECK_MARK} {tinyurl(u)}\n"
-    msg.edit_text(message,
-                  disable_web_page_preview=True)
+            message += (
+                f"{Emoji.HEAVY_MINUS_SIGN} {u[:25]}\n"
+                f"{Emoji.WHITE_HEAVY_CHECK_MARK} {tinyurl(u)}\n"
+            )
+    msg.edit_text(message, disable_web_page_preview=True)

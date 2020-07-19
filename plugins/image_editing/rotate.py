@@ -5,7 +5,9 @@ from main import prefixes
 from methods.image import get_image, save_image
 
 
-@Client.on_message(Filters.user("self") & Filters.reply & Filters.command("rotate", prefixes=prefixes))
+@Client.on_message(
+    Filters.user("self") & Filters.reply & Filters.command("rotate", prefixes=prefixes)
+)
 def rotate(c: Client, msg: Message):
     targetmsg = msg.reply_to_message
 
@@ -15,7 +17,9 @@ def rotate(c: Client, msg: Message):
 
     msg.delete()
 
-    rotation = 180  # If rotation is 90, 180 or 270 there are constants like Image.ROTATE_180
+    rotation = (
+        180  # If rotation is 90, 180 or 270 there are constants like Image.ROTATE_180
+    )
 
     if len(msg.command) > 1:
         try:
@@ -31,5 +35,5 @@ def rotate(c: Client, msg: Message):
         msg.chat.id,
         save_image(rotated),
         caption="<b>Rotated {} degrees</b>".format(rotation),
-        reply_to_message_id=targetmsg.message_id
+        reply_to_message_id=targetmsg.message_id,
     )

@@ -14,10 +14,14 @@ def qr(c: Client, msg: Message):
     elif len(msg.command) > 1:
         text = msg.text[len("/qr"):]
     else:
-        msg.edit_text("Please reply to a message or specify the text like <code>/qr GodSaveTheDoge</code>")
+        msg.edit_text(
+            "Please reply to a message or specify the text like <code>/qr GodSaveTheDoge</code>"
+        )
         return 1
     msg.delete()
     c.send_photo(
         msg.chat.id,
-        "https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl={}".format(urllib.parse.quote(text))
+        "https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl={}".format(
+            urllib.parse.quote(text)
+        ),
     )

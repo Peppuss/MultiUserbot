@@ -54,10 +54,12 @@ def carbon(c: Client, msg: Message):
         "si": "false",
         "es": "2x",
         "wm": "false",
-        "code": code
+        "code": code,
     }
 
-    params = "&".join(["{}={}".format(i, urllib.parse.quote(j)) for i, j in _params.items()])
+    params = "&".join(
+        ["{}={}".format(i, urllib.parse.quote(j)) for i, j in _params.items()]
+    )
 
     msg.edit_text("Initializing driver...")
 
@@ -89,14 +91,9 @@ def carbon(c: Client, msg: Message):
 
     if msg.reply_to_message:
         c.send_photo(
-            msg.chat.id,
-            path,
-            reply_to_message_id=msg.reply_to_message.message_id
+            msg.chat.id, path, reply_to_message_id=msg.reply_to_message.message_id
         )
     else:
-        c.send_photo(
-            msg.chat.id,
-            path
-        )
+        c.send_photo(msg.chat.id, path)
 
     msg.delete()

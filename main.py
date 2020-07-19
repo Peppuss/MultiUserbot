@@ -12,9 +12,7 @@ import configparser
 import shutil
 import logging
 
-ubot = Client(
-    "MultiUserbot",
-    config_file="config.ini")
+ubot = Client("MultiUserbot", config_file="config.ini")
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -31,7 +29,9 @@ if __name__ == "__main__":
     logging.basicConfig(
         format="[%(levelname)s %(asctime)s] In module %(module)s, function %(funcName)s at line %(lineno)d -> %("
                "message)s",
-        datefmt="%d/%m/%Y %H:%M:%S %p", level=logging.WARN)
+        datefmt="%d/%m/%Y %H:%M:%S %p",
+        level=logging.WARN,
+    )
     ubot.start()
 
 if not os.path.exists("MultiUserbot.session"):

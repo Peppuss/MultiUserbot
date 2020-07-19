@@ -11,9 +11,9 @@ def show_command(c, msg):
         msg.edit_text("Please use <code>/show your text</code>")
         return 0
     text = msg.text[len("/show "):]
-    for i in range(len(text)):
-        if text[i] in (" ", "\n", "\t"):  # space, new line and tab
-            time.sleep(0.25)
+    for i, j in enumerate(text, start=0):  # i = index, j = value
+        if j in (" ", "\n"):  # space and new line
+            time.sleep(0.15)
             continue
-        msg.edit_text(text[:i + 1])
-        time.sleep(0.25)
+        msg.edit_text(text[: i + 1])
+        time.sleep(0.3)

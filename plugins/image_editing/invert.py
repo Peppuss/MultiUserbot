@@ -6,7 +6,9 @@ from main import prefixes
 from methods.image import get_image, save_image
 
 
-@Client.on_message(Filters.user("self") & Filters.reply & Filters.command("invert", prefixes=prefixes))
+@Client.on_message(
+    Filters.user("self") & Filters.reply & Filters.command("invert", prefixes=prefixes)
+)
 def invert(c: Client, msg: Message):
     targetmsg: Message = msg.reply_to_message
 
@@ -24,5 +26,5 @@ def invert(c: Client, msg: Message):
         msg.chat.id,
         save_image(image),
         caption="<b>Inverted</b>",
-        reply_to_message_id=targetmsg.message_id
+        reply_to_message_id=targetmsg.message_id,
     )

@@ -11,7 +11,7 @@ HEARTS = [
     Emoji.GREEN_HEART,
     Emoji.PURPLE_HEART,
     Emoji.BLUE_HEART,
-    Emoji.BLACK_HEART
+    Emoji.BLACK_HEART,
 ]
 TIMEOUT = 0.3
 NUM = 50  # 10 seconds, should be good

@@ -7,13 +7,30 @@ from pyrogram import Message
 
 from main import prefixes
 
-ASCII_CHARSET = ["█", "@", "#", "O", "$", "%", "?", "o", "*", "+", ";", ":", ",", ".", " "]
+ASCII_CHARSET = [
+    "█",
+    "@",
+    "#",
+    "O",
+    "$",
+    "%",
+    "?",
+    "o",
+    "*",
+    "+",
+    ";",
+    ":",
+    ",",
+    ".",
+    " ",
+]
 MAXWIDTH = 63
 MAXHEIGHT = 64
 
 
-def resize_width(image: PIL.Image, mwidth,
-                 mheight) -> PIL.Image:  # The limit is 101 characters, in mono on my machine :)
+def resize_width(
+        image: PIL.Image, mwidth, mheight
+) -> PIL.Image:  # The limit is 101 characters, in mono on my machine :)
     width, height = image.size
     ratio = min(mwidth / width, mheight / height)
     return image.resize((int(width * ratio), int(height * ratio)))
@@ -23,8 +40,9 @@ def convert_grayscale(image: PIL.Image) -> PIL.Image:
     return image.convert("L")
 
 
-def generate_ascii_art(image: PIL.Image,
-                       ascii_charset: list) -> str:  # not only lists works but for the sake of semplicity I'll leave only list as suggested type
+def generate_ascii_art(
+        image: PIL.Image, ascii_charset: list
+) -> str:  # not only lists works but for the sake of semplicity I'll leave only list as suggested type
     ascii_art = ""
     width, height = image.size
     for y in range(height):
@@ -35,7 +53,11 @@ def generate_ascii_art(image: PIL.Image,
     return ascii_art
 
 
-@Client.on_message(Filters.reply & Filters.user("self") & Filters.command("asciiart", prefixes=prefixes))
+@Client.on_message(
+    Filters.reply
+    & Filters.user("self")
+    & Filters.command("asciiart", prefixes=prefixes)
+)
 def asciiart(c, msg):
     # Check if the message replied to is valid
     targetmsg: Message = msg.reply_to_message
