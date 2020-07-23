@@ -4,19 +4,24 @@ import requests
 
 
 class ImageUpscaler:
-    """Class to upscale images"""
+
+    """Class to upscale images."""
 
     def __init__(self):
+
         """Initialize the class"""
+
         self.__author__ = "GodSaveTheDoge <https://github.com/GodSaveTheDoge>"
         self._SCHEME = "https"
         self._HOST = "ai.generated.photos"
         self.base_url = "{}://{}".format(self._SCHEME, self._HOST)
 
-    def upscale(self, image: Union[str, bytes]) -> Union[bytes, bool]:
+    def upscale(self, image: Union[str, bytes]) -> bytes:
 
         """
         Upscale an image
+        :param image: Path to the image or the image
+        :return: The image as bytes
         """
 
         if isinstance(image, str):
