@@ -1,6 +1,10 @@
 # MultiUserbot
+A [Telegram](https://telegram.me) Userbot to do cool stuff
 
-You can use this userbot to automate a lot of things.
+[![Python 3.6](https://img.shields.io/badge/Python-3.6%20or%20newer-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dec3fe46191d47fc8a5155406eef49af)](https://www.codacy.com/manual/GodSaveTheDoge/MultiUserbot)
+![GitHub repo size](https://img.shields.io/github/repo-size/GodSaveTheDoge/MultiUserbot)
+[![HitCount](http://hits.dwyl.com/GodSaveTheDoge/MultiUserbot.svg)](http://hits.dwyl.com/GodSaveTheDoge/MultiUserbot)
 
 ## Getting started
 

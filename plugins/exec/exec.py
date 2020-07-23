@@ -1,4 +1,5 @@
 import html
+import io
 import sys
 import traceback
 
@@ -16,9 +17,13 @@ def exec_command(c, msg):
         return 0
     code = msg.text.html[len("/exec "):]
     try:
-        result = exec(code)
+        old_stdout = sys.stdout
+        redirected_output = sys.stdout = io.StringIO()
+        exec(code)
+        sys.stdout = old_stdout
+        result = redirected_output.getvalue()
     except Exception as e:
-        result = "".join(traceback.format_exception(e, e, sys.exc_info()[2]))
+        result = traceback.format_tb(traceback.extract_tb(sys.last_traceback))
     try:
         msg.edit_text(
             "<b>Code:</b>\n<code>{}</code>\n\n<b>Result:</b>\n<code>{}</code>".format(
