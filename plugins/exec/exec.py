@@ -21,7 +21,7 @@ def exec_command(c, msg):
         redirected_output = sys.stdout = io.StringIO()
         exec(code)
         sys.stdout = old_stdout
-        result = redirected_output.getvalue()
+        result = redirected_output.getvalue().rstrip("\n ")
     except Exception as e:
         result = traceback.format_tb(traceback.extract_tb(sys.last_traceback))
     try:

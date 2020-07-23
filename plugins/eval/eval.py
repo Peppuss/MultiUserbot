@@ -19,7 +19,7 @@ def eval_command(c, msg):
         return 0
     code = msg.text.html[len("/eval "):]
     try:
-        result = eval(code)
+        result = eval(code).rstrip("\n ")
     except Exception as e:
         result = "".join(traceback.format_exception(e, e, sys.exc_info()[2]))
     try:
