@@ -1,4 +1,5 @@
 import html
+import io
 import sys
 import traceback
 
@@ -18,26 +19,38 @@ def eval_command(c, msg):
         )
         return 0
     code = msg.text.html[len("/eval "):]
+    old_stdout = sys.stdout
+    redirected_stdout = sys.stdout = io.StringIO()
+
     try:
-        result = eval(code).rstrip("\n ")
+        eval_result = eval(code)
     except Exception as e:
-        result = "".join(traceback.format_exception(e, e, sys.exc_info()[2]))
+        eval_result = ""
+        tb = "".join(traceback.format_exception(e, e, sys.exc_info()[2])).rstrip("\n ")
+    else:
+        tb = ""
+
+    sys.stdout = old_stdout
+    stdout_value = redirected_stdout.getvalue().rstrip("\n ")
+    result = stdout_value + ("\n" + tb if tb else "")
+
     try:
         if len(code + str(result)) > 2000:
             msg.edit_text("Uploading to nekobin...")
             msg.edit_text(
-                "<b>Code:</b>\n{pasted}\n\n<b>Result:</b>\n{pasted}".format(
+                "<b>Code:</b>\n{pasted}\n\n<b>Eval Result:</b>\n{pasted}\n\n<b>Result:</b>\n{pasted}".format(
                     pasted='Too long! <a href="https://nekobin.com/{url}">Pasted</a>'.format(
                         url=Nekobin.paste(
-                            "Code:\n{}\n\nResult:\n{}".format(str(code), str(result))
+                            "Code:\n{}\n\nEval Result:\n{}\n\nResult:\n{}".format(str(code), str(eval_result),
+                                                                                  str(result))
                         )
                     )
                 )
             )
         else:
             msg.edit_text(
-                "<b>Code:</b>\n<code>{}</code>\n\n<b>Result:</b>\n<code>{}</code>".format(
-                    html.escape(str(code)[:1000]), html.escape(str(result)[:2000])
+                "<b>Code:</b>\n<code>{}</code>\n\n<b>Eval Result:</b>\n{}\n\n<b>Result:</b>\n<code>{}</code>".format(
+                    html.escape(str(code)), html.escape(eval_result), html.escape(str(result))
                 ),
                 parse_mode="html",
             )

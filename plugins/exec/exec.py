@@ -16,14 +16,21 @@ def exec_command(c, msg):
         )
         return 0
     code = msg.text.html[len("/exec "):]
+
+    old_stdout = sys.stdout
+    redirected_stdout = sys.stdout = io.StringIO()
+
     try:
-        old_stdout = sys.stdout
-        redirected_output = sys.stdout = io.StringIO()
         exec(code)
-        sys.stdout = old_stdout
-        result = redirected_output.getvalue().rstrip("\n ")
     except Exception as e:
-        result = traceback.format_tb(traceback.extract_tb(sys.last_traceback))
+        tb = "".join(traceback.format_exception(e, e, sys.exc_info()[2])).rstrip("\n ")
+    else:
+        tb = ""
+
+    sys.stdout = old_stdout
+    stdout_value = redirected_stdout.getvalue().rstrip("\n ")
+    result = stdout_value + ("\n" + tb if tb else "")
+
     try:
         msg.edit_text(
             "<b>Code:</b>\n<code>{}</code>\n\n<b>Result:</b>\n<code>{}</code>".format(
