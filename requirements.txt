@@ -1,5 +1,5 @@
 requests~=2.24.0
-pyrogram~=0.17.1
+https://github.com/pyrogram/pyrogram/archive/develop.zip
 bs4~=0.0.1
 lxml~=4.5.2
 TgCrypto~=1.2.1

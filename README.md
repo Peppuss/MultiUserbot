@@ -43,11 +43,6 @@ Open config.ini with your favourite editor and put your api id and api hash (lin
 
 `python main.py `
 
-## Notes
-
-- This code is still buggy and not optimized, I'm still developing this. I'd suggest to wait until a "stable" release.
-- Some plugins will create and use a "tmp" folder, you can delete it (when the bot is not running). If you do not do this it'll be deleted on startup anyway.
-
 ## Contact me
 
 - [Telegram profile](https://t.me/GodSaveTheDoge) 

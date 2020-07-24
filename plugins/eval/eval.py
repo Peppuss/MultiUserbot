@@ -50,7 +50,7 @@ def eval_command(c, msg):
         else:
             msg.edit_text(
                 "<b>Code:</b>\n<code>{}</code>\n\n<b>Eval Result:</b>\n{}\n\n<b>Result:</b>\n<code>{}</code>".format(
-                    html.escape(str(code)), html.escape(eval_result), html.escape(str(result))
+                    html.escape(str(code)), html.escape(str(eval_result)), html.escape(str(result))
                 ),
                 parse_mode="html",
             )
