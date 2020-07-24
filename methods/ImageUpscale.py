@@ -3,8 +3,11 @@ from typing import Union
 import requests
 
 
-class ImageUpscaler:
+class InternalServerError(Exception):
+    pass
 
+
+class ImageUpscaler:
     """Class to upscale images."""
 
     def __init__(self):
@@ -40,7 +43,7 @@ class ImageUpscaler:
             files=file
         )
 
-        if not r.ok:
-            raise Exception("Something went wrong")
+        if r.status_code == 500:
+            raise InternalServerError("Recived 500 Interal Server Error")
 
         return r.content

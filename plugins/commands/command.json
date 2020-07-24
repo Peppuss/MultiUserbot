@@ -1,7 +1,6 @@
 [
   {
     "command": "commands",
-    "description": "It retrives the active plugins and print informations about them. [/commands]",
-    "last_update": 1590789600
+    "description": "It retrives the active plugins and print informations about them. [/commands]"
   }
 ]
