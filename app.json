@@ -1,0 +1,22 @@
+{
+  "name": "MultiUserbot",
+  "description": "A telegram userbot with multiple functions",
+  "repository": "https://github.com/GodSaveTheDoge/MultiUserbot/",
+  "logo": "https://avatars0.githubusercontent.com/u/51802433",
+  "keywords": [
+    "python",
+    "telegram",
+    "userbot"
+  ],
+  "website": "https://github.com/GodSaveTheDoge/MultiUserbot/",
+  "env": {
+    "SESSION_STRING": {
+      "description": "Generate it with generate_session.py"
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    }
+  }
+}

@@ -18,12 +18,10 @@ prefixes = list(config["prefixes"].keys())
 # This is an easy way to have the prefixes in the config file
 # Later prefixes will be imported in the plugins
 
-if len(sys.argv) > 1:
-    if sys.argv[1] == "heroku":
-        session_string = config["heroku"]["session_string"]
-        ubot = Client(
-            session_string
-        )
+if len(sys.argv) > 1 and sys.argv[1] == "heroku":
+    ubot = Client(
+        os.environ["SESSION_STRING"]
+    )
 else:
     ubot = Client("MultiUserbot", config_file="config.ini")
 
