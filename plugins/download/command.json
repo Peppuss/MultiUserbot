@@ -1,0 +1,6 @@
+[
+  {
+    "command": "download",
+    "description": "In reply, donwload the media in the message replied to [/download]"
+  }
+]

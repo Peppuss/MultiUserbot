@@ -12,13 +12,20 @@ import configparser
 import shutil
 import logging
 
-ubot = Client("MultiUserbot", config_file="config.ini")
-
 config = configparser.ConfigParser()
 config.read("config.ini")
 prefixes = list(config["prefixes"].keys())
 # This is an easy way to have the prefixes in the config file
 # Later prefixes will be imported in the plugins
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == "heroku":
+        session_string = config["heroku"]["session_string"]
+        ubot = Client(
+            session_string
+        )
+else:
+    ubot = Client("MultiUserbot", config_file="config.ini")
 
 if os.path.exists("tmp"):
     shutil.rmtree("tmp", ignore_errors=True)

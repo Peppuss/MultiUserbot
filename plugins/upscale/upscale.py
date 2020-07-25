@@ -1,7 +1,6 @@
 import logging
 import random
 import string
-import time
 
 from pyrogram import Client, Message, Filters
 
@@ -24,7 +23,7 @@ def upscale(c: Client, msg: Message):
 
     msg.edit_text(
         "Upscaling...\n"
-        "[{s}????{s}]".format(s=" " * 8)
+        "[{s}????{s}] ??%".format(s=" " * 8)
     )
 
     try:
@@ -36,7 +35,7 @@ def upscale(c: Client, msg: Message):
 
     msg.edit_text(
         "Uploading...\n"
-        "[{s}????{s}]".format(s=" " * 8)
+        "[{s}????{s}] ??%".format(s=" " * 8)
     )
     c.send_photo(msg.chat.id,
                  ufname,
@@ -46,17 +45,10 @@ def upscale(c: Client, msg: Message):
     msg.delete()
 
 
-l_update = 0
-
-
 def download_update(progress, progress_total, msg):
-    global l_update
-    if not l_update + 2 < time.time():
-        return 0
-    l_update = time.time()
     percent = progress / progress_total * 100
     bar = "=" * (int(percent / 10) - 1) + ">"
     msg.edit_text(
         "Downloading\n"
-        "<code>[{}]</code>".format(bar + " " * (10 - len(bar)))
+        "<code>[{}] {:.1f}%</code>".format(bar + " " * (10 - len(bar)), percent)
     )
