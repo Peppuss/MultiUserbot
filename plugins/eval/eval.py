@@ -12,13 +12,13 @@ Nekobin = Nekobin()
 
 
 @Client.on_message(Filters.user("self") & Filters.command("eval", prefixes=prefixes))
-def eval_command(c, msg):
+def eval_command(c, msg):  # TODO rewrite this mess
     if len(msg.command) < 2:
         msg.edit_text(
             "Please use: <code>/eval msg.reply(some python code)</code>\nNote: Client = c, Message = msg"
         )
         return 0
-    code = msg.text.html[len("/eval "):]
+    code = msg.text.markdown[len("/eval "):]
     old_stdout = sys.stdout
     redirected_stdout = sys.stdout = io.StringIO()
 
@@ -49,10 +49,9 @@ def eval_command(c, msg):
             )
         else:
             msg.edit_text(
-                "<b>Code:</b>\n<code>{}</code>\n\n<b>Eval Result:</b>\n{}\n\n<b>Result:</b>\n<code>{}</code>".format(
+                "<b>Code:</b>\n<code>{}</code>\n\n<b>Eval Result:</b>\n<code>{}</code>\n\n<b>Result:</b>\n<code>{}</code>".format(
                     html.escape(str(code)), html.escape(str(eval_result)), html.escape(str(result))
-                ),
-                parse_mode="html",
+                )
             )
     except Exception as e:
         msg.edit_text(str(e))
