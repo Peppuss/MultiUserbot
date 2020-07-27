@@ -8,11 +8,12 @@ class InternalServerError(Exception):
 
 
 class ImageUpscaler:
+
     """Class to upscale images."""
 
     def __init__(self):
 
-        """Initialize the class"""
+        """Initialize the class."""
 
         self.__author__ = "GodSaveTheDoge <https://github.com/GodSaveTheDoge>"
         self._SCHEME = "https"
@@ -23,6 +24,7 @@ class ImageUpscaler:
 
         """
         Upscale an image
+
         :param image: Path to the image or the image
         :return: The image as bytes
         """

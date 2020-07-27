@@ -13,10 +13,11 @@ A [Telegram](https://telegram.me) Userbot to do cool stuff
 
 ### Requirements
 
-- ```bash
+-   ```bash
     $ python -V
     Python 3.x.y
-  ```
+    ```
+
 -   A [Heroku](http://heroku.com/) account
 -   Pyrogram installed
   
@@ -67,8 +68,6 @@ Not that it takes a minute or so.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-
-
 ## Getting started with your hosting (or your pc)
 
 ### Requirements
@@ -111,5 +110,5 @@ python main.py
 
 ## Contact me
 
-- [Telegram profile](https://t.me/GodSaveTheDoge) (Currently unactive, I'm more active [here](https://t.me/DogeSaveTheGod))
-- [Telegram channel](https://t.me/GodSaveTheBots)
+-   [Telegram profile](https://t.me/GodSaveTheDoge) (Currently unactive, I'm more active [here](https://t.me/DogeSaveTheGod))
+-   [Telegram channel](https://t.me/GodSaveTheBots)
