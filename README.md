@@ -8,11 +8,8 @@ A [Telegram](https://telegram.me) Userbot to do cool stuff
 [![HitCount](http://hits.dwyl.com/GodSaveTheDoge/MultiUserbot.svg)](http://hits.dwyl.com/GodSaveTheDoge/MultiUserbot)
 [![Contact Me](https://img.shields.io/badge/Telegram-Contact%20Me-informational)](https://t.me/DogeSaveTheGod)
 
-## 
 
 ## Getting started with heroku
-
-
 
 ### Requirements
 
@@ -20,12 +17,12 @@ A [Telegram](https://telegram.me) Userbot to do cool stuff
     $ python -V
     Python 3.x.y
   ```
-- An [Heroku](http://heroku.com/) account
-- Pyrogram installed
+-   A [Heroku](http://heroku.com/) account
+-   Pyrogram installed
   
-  ```bash
-  pip install pyrogram tgcrypto
-  ```
+      ```bash
+      pip install pyrogram tgcrypto
+      ```
 
 #### Get your api id and api hash
 
@@ -76,12 +73,12 @@ Not that it takes a minute or so.
 
 ### Requirements
 
-- Python 3.6.0 or higher (3.8.2 suggested)
+-   Python 3.6.0 or higher (3.8.2 suggested)
   
-  ```bash
+    ```bash
     $ python -V
     Python 3.x.y
-  ```
+    ```
 
 #### Clone this repository (or download the zip and unzip it)
 
