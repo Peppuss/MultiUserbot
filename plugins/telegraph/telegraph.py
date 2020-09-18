@@ -1,7 +1,8 @@
 import io
 
 import requests
-from pyrogram import Client, Filters, Message, Emoji
+from pyrogram import Client, filters, emoji
+from pyrogram.types import Message
 from telegraph import utils
 
 from main import prefixes
@@ -10,7 +11,7 @@ HEADERS = {"Origin": "https://telegra.ph"}
 
 
 @Client.on_message(
-    Filters.user("self") & Filters.command("telegraph", prefixes=prefixes)
+    filters.user("self") & filters.command("telegraph", prefixes=prefixes)
 )
 def telegraph(c: Client, msg: Message):
     if len(msg.command) > 1:
@@ -34,18 +35,18 @@ def telegraph(c: Client, msg: Message):
 
     if not text:
         msg.edit_text(
-            f"{Emoji.NEWSPAPER} Telegraph\n"
+            f"{emoji.NEWSPAPER} Telegraph\n"
             f"\n"
-            f"{Emoji.CROSS_MARK} <b>Error:</b> <code>Invalid message</code>"
+            f"{emoji.CROSS_MARK} <b>Error:</b> <code>Invalid message</code>"
         )
 
     nodes = utils.html_to_nodes(text.replace("'", "\\u0027"))
 
     if len(nodes) == 0:
         msg.edit_text(
-            f"{Emoji.NEWSPAPER} Telegraph\n"
+            f"{emoji.NEWSPAPER} Telegraph\n"
             f"\n"
-            f"{Emoji.CROSS_MARK} <b>Error:</b> <code>Invalid text!</code>"
+            f"{emoji.CROSS_MARK} <b>Error:</b> <code>Invalid text!</code>"
         )
 
     content = (
@@ -85,17 +86,17 @@ def telegraph(c: Client, msg: Message):
 
     if "error" in r.keys():
         msg.edit_text(
-            f"{Emoji.NEWSPAPER} Telegraph\n"
+            f"{emoji.NEWSPAPER} Telegraph\n"
             f"\n"
-            f"{Emoji.CROSS_MARK} <b>Error:</b> <code>{r['error']}</code>"
+            f"{emoji.CROSS_MARK} <b>Error:</b> <code>{r['error']}</code>"
         )
         return 1
 
     msg.edit_text(
-        f"{Emoji.NEWSPAPER} Telegraph\n"
+        f"{emoji.NEWSPAPER} Telegraph\n"
         f"\n"
-        f"{Emoji.PAGE_WITH_CURL} <b>Title:</b> <code>{title}</code>\n"
-        f"{Emoji.LINK} <b>Link:</b> https://telegra.ph/{r['path']}\n"
-        f"{Emoji.PEN} <b>Author:</b> <code>{author}</code>",
+        f"{emoji.PAGE_WITH_CURL} <b>Title:</b> <code>{title}</code>\n"
+        f"{emoji.LINK} <b>Link:</b> https://telegra.ph/{r['path']}\n"
+        f"{emoji.PEN} <b>Author:</b> <code>{author}</code>",
         parse_mode="html",
     )

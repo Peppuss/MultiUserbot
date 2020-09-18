@@ -6,7 +6,7 @@ import sys
 if sys.version_info.minor < 7:
     print("You should use python 3.7 or higher.\n")
 
-from pyrogram import Client
+from pyrogram import Client, idle
 import os
 import configparser
 import shutil
@@ -33,11 +33,12 @@ os.mkdir("tmp")
 if __name__ == "__main__":
     logging.basicConfig(
         format="[%(levelname)s %(asctime)s] In module %(module)s, function %(funcName)s at line %(lineno)d -> %("
-               "message)s",
+            "message)s",
         datefmt="%d/%m/%Y %H:%M:%S %p",
         level=logging.WARN,
     )
     ubot.start()
+    idle()
 
 if not os.path.exists("MultiUserbot.session"):
     logging.warning("Write /commands in a chat to see the commands available!")

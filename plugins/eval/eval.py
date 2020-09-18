@@ -3,7 +3,7 @@ import io
 import sys
 import traceback
 
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 from main import prefixes
 from methods.Nekobin import Nekobin
@@ -11,7 +11,7 @@ from methods.Nekobin import Nekobin
 Nekobin = Nekobin()
 
 
-@Client.on_message(Filters.user("self") & Filters.command("eval", prefixes=prefixes))
+@Client.on_message(filters.user("self") & filters.command("eval", prefixes=prefixes))
 def eval_command(c, msg):  # TODO rewrite this mess
     if len(msg.command) < 2:
         msg.edit_text(

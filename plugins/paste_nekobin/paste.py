@@ -1,7 +1,8 @@
 import random
 import string
 
-from pyrogram import Client, Filters, Emoji, Message
+from pyrogram import Client, filters, emoji
+from pyrogram.types import Message
 
 from main import prefixes
 from methods.Nekobin import Nekobin
@@ -10,7 +11,7 @@ Nekobin = Nekobin()
 
 
 @Client.on_message(
-    Filters.user("self") & Filters.command("paste", prefixes=prefixes) & Filters.reply
+    filters.user("self") & filters.command("paste", prefixes=prefixes) & filters.reply
 )
 def paste_command(c: Client, msg: Message):
     msg.edit_text("Pasting...")
@@ -34,10 +35,10 @@ def paste_command(c: Client, msg: Message):
 
     key = Nekobin.paste(text)
     msg.edit_text(
-        f"{Emoji.GLOBE_WITH_MERIDIANS} Paste {Emoji.GLOBE_WITH_MERIDIANS}\n"
+        f"{emoji.GLOBE_WITH_MERIDIANS} Paste {emoji.GLOBE_WITH_MERIDIANS}\n"
         f"\n"
-        f"{Emoji.LINK} Url: https://nekobin.com/{key}\n"
-        f"{Emoji.NEWSPAPER} Raw: https://nekobin.com/raw/{key} \n"
+        f"{emoji.LINK} Url: https://nekobin.com/{key}\n"
+        f"{emoji.NEWSPAPER} Raw: https://nekobin.com/raw/{key} \n"
         f"\n",
         disable_web_page_preview=True,
     )

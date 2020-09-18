@@ -5,7 +5,8 @@ import random
 import string
 import urllib.parse
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
@@ -28,7 +29,7 @@ OPTIONS = Options()
 OPTIONS.headless = True
 
 
-@Client.on_message(Filters.me & Filters.command("carbon", prefixes=prefixes))
+@Client.on_message(filters.me & filters.command("carbon", prefixes=prefixes))
 def carbon(c: Client, msg: Message):
     code = ArgumentOrReply(msg, len("/carbon "))
     if not code:

@@ -2,7 +2,7 @@ import configparser
 import os
 
 import requests
-from pyrogram import Client, Filters, Emoji
+from pyrogram import Client, filters, emoji
 
 from main import prefixes
 
@@ -12,7 +12,7 @@ apikey = config["weather"]["api_key"]
 
 
 # This is not the best choice, I should directly use the api
-@Client.on_message(Filters.user("self") & Filters.command("weather", prefixes=prefixes))
+@Client.on_message(filters.user("self") & filters.command("weather", prefixes=prefixes))
 def weather_command(c, msg):
     if len(msg.command) < 2:
         msg.edit_text("Please use <code>/weather Roma</weather>")
@@ -47,7 +47,7 @@ def weather_command(c, msg):
             "\n"
             "<b>Weather</b>: {wmain}\n"
             "<b>Description</b>: {wdescripion}\n".format(
-                emoji=Emoji.SUN_BEHIND_LARGE_CLOUD,
+                emoji=emoji.SUN_BEHIND_LARGE_CLOUD,
                 name=response["name"],
                 country=response["sys"]["country"],
                 lon=response["coord"]["lon"],

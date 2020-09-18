@@ -1,11 +1,11 @@
 import time
 
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 from main import prefixes
 
 
-@Client.on_message(Filters.user("self") & Filters.command("show", prefixes=prefixes))
+@Client.on_message(filters.user("self") & filters.command("show", prefixes=prefixes))
 def show_command(c, msg):
     if len(msg.command) < 2:
         msg.edit_text("Please use <code>/show your text</code>")

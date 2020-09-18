@@ -3,7 +3,8 @@ import random
 import string
 from typing import Optional
 
-from pyrogram import Message, Client
+from pyrogram import Client
+from pyrogram.types import Message
 
 
 def getext(c: Client, msg: Message) -> Optional[str]:
@@ -31,23 +32,25 @@ def getname(c: Client, msg: Message) -> str:
     """Get the name to download a file"""
 
     for media_type in ("document", "audio", "video", "animation", "voice", "videonote"):
-        if hasattr(msg.reply_to_message, media_type) and getattr(msg.reply_to_message, media_type):
+        if (
+            hasattr(msg.reply_to_message, media_type)
+            and getattr(msg.reply_to_message, media_type)
+            and msg.reply_to_message[media_type].file_name
+        ):
 
-            if msg.reply_to_message[media_type].file_name:
+            if not os.path.exists(msg.reply_to_message[media_type].file_name):
+                return msg.reply_to_message[media_type].file_name
 
-                if not os.path.exists(msg.reply_to_message[media_type].file_name):
-                    return msg.reply_to_message[media_type].file_name
+            name_ext = os.path.splitext(msg.reply_to_message[media_type].file_name)
+            cnt = 1
+            while True:
+                possible_name_ext = list(name_ext)
+                possible_name_ext[0] += str(cnt)
 
-                name_ext = os.path.splitext(msg.reply_to_message[media_type].file_name)
-                cnt = 1
-                while True:
-                    possible_name_ext = list(name_ext)
-                    possible_name_ext[0] += str(cnt)
+                if not os.path.exists("".join(possible_name_ext)):
+                    return "".join(possible_name_ext)
 
-                    if not os.path.exists("".join(possible_name_ext)):
-                        return "".join(possible_name_ext)
-
-                    cnt += 1
+                cnt += 1
 
     ext = getext(c, msg)
     fname = "".join(random.choices(string.ascii_letters, k=10)) + ext

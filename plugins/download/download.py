@@ -1,12 +1,13 @@
 import time
 
-from pyrogram import Client, Message, Filters, Emoji
+from pyrogram import Client, filters, emoji
+from pyrogram.types import Message
 
 from main import prefixes
 from methods.GetExt import getname
 
 
-@Client.on_message(Filters.me & Filters.reply & Filters.command("download", prefixes=prefixes))
+@Client.on_message(filters.me & filters.reply & filters.command("download", prefixes=prefixes))
 def download(c: Client, msg: Message):
     starttime = time.time()
 
@@ -14,15 +15,15 @@ def download(c: Client, msg: Message):
 
     try:
         msg.reply_to_message.download(file_name=fname, progress=download_update,
-                                      progress_args=(msg, fname))
+                                    progress_args=(msg, fname))
     except Exception as e:
         msg.edit_text("Something went wrong:\n" + str(e))
 
     msg.edit_text(
         "{} <b>Downloaded</b>\n"
         "{} <b>Saved to:</b> <code>{}</code>\n"
-        "{} <b>Time needed:</b> {:.1f}\n".format(Emoji.DOWN_ARROW, Emoji.FILE_FOLDER, fname,
-                                                 Emoji.HOURGLASS_DONE,
+        "{} <b>Time needed:</b> {:.1f}\n".format(emoji.DOWN_ARROW, emoji.FILE_FOLDER, fname,
+                                                 emoji.HOURGLASS_DONE,
                                                  time.time() - starttime)
     )
 
@@ -34,5 +35,5 @@ def download_update(progress, progress_total, msg, fname):
     msg.edit_text(
         "{} <b>Downloading...</b>\n"
         "{} <b>Saved to:</b> <code>{}</code>\n"
-        "<code>{} {:.1f}%</code>".format(Emoji.DOWN_ARROW, Emoji.FILE_FOLDER, fname, full_bar, percent)
+        "<code>{} {:.1f}%</code>".format(emoji.DOWN_ARROW, emoji.FILE_FOLDER, fname, full_bar, percent)
     )

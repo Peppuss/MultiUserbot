@@ -2,7 +2,8 @@ import logging
 import random
 import string
 
-from pyrogram import Client, Message, Filters
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from main import prefixes
 from methods.ImageUpscale import ImageUpscaler, InternalServerError
@@ -10,7 +11,7 @@ from methods.ImageUpscale import ImageUpscaler, InternalServerError
 imu = ImageUpscaler()
 
 
-@Client.on_message(Filters.me & Filters.reply & Filters.command("upscale", prefixes=prefixes))
+@Client.on_message(filters.me & filters.reply & filters.command("upscale", prefixes=prefixes))
 def upscale(c: Client, msg: Message):
     if not (msg.reply_to_message.photo or msg.reply_to_message.document):
         msg.edit_text("Please reply to a photo or document")

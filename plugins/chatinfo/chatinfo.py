@@ -1,42 +1,42 @@
 from datetime import datetime
 
-from pyrogram import Client, Filters, Emoji
+from pyrogram import Client, filters, emoji
 
 from main import prefixes
 
 chatinfo_message = {
-    "id": f"{Emoji.ID_BUTTON} <b>Id</b>: <code>[%id%]</code>",
-    "type": f"{Emoji.JAPANESE_SYMBOL_FOR_BEGINNER} <b>Type</b>: <code>[%type%]</code>",
-    "title": f"{Emoji.FLEUR_DE_LIS} <b>Title</b>: <code>[%title%]</code>",
-    "invite_link": f"{Emoji.LINK} <b>Invite Link</b>: <code>[%invite_link%]</code>",
-    "first_name": f"{Emoji.BLOND_HAIRED_MAN_LIGHT_SKIN_TONE} <b>Name</b>: <code>[%first_name%]</code>",
-    "last_name": f"{Emoji.BUST_IN_SILHOUETTE} <b>Last Name</b>: <code>[%last_name%]</code>",
-    "username": f"{Emoji.LINK} <b>Username</b>: <code>[%username%]</code>",
-    "dc_id": f"{Emoji.DESKTOP_COMPUTER} <b>Dc</b>: <code>[%dc_id%]</code>",
-    "status": f"{Emoji.MOBILE_PHONE_WITH_ARROW} <b>Status</b>: <code>[%status%]</code>",
-    "last_online_date": f"{Emoji.TWELVE_O_CLOCK} <b>Last Online Date</b>: <code>["
+    "id": f"{emoji.ID_BUTTON} <b>Id</b>: <code>[%id%]</code>",
+    "type": f"{emoji.JAPANESE_SYMBOL_FOR_BEGINNER} <b>Type</b>: <code>[%type%]</code>",
+    "title": f"{emoji.FLEUR_DE_LIS} <b>Title</b>: <code>[%title%]</code>",
+    "invite_link": f"{emoji.LINK} <b>Invite Link</b>: <code>[%invite_link%]</code>",
+    "first_name": f"{emoji.PERSON_LIGHT_SKIN_TONE_BLOND_HAIR} <b>Name</b>: <code>[%first_name%]</code>",
+    "last_name": f"{emoji.BUST_IN_SILHOUETTE} <b>Last Name</b>: <code>[%last_name%]</code>",
+    "username": f"{emoji.LINK} <b>Username</b>: <code>[%username%]</code>",
+    "dc_id": f"{emoji.DESKTOP_COMPUTER} <b>Dc</b>: <code>[%dc_id%]</code>",
+    "status": f"{emoji.MOBILE_PHONE_WITH_ARROW} <b>Status</b>: <code>[%status%]</code>",
+    "last_online_date": f"{emoji.TWELVE_O_CLOCK} <b>Last Online Date</b>: <code>["
                         f"%last_online_date%]</code>",
-    "next_offline_date": f"{Emoji.SEVEN_THIRTY} <b>Next Offline Date</b>: <code>["
+    "next_offline_date": f"{emoji.SEVEN_THIRTY} <b>Next Offline Date</b>: <code>["
                          f"%next_offline_date%]</code>",
-    "is_bot": f"{Emoji.ROBOT_FACE} <b>Is Bot</b>: <code>[%is_bot%]</code>",
-    "is_contact": f"{Emoji.TELEPHONE} <b>Is Contact</b>: <code>[%is_contact%]</code>",
-    "is_mutual_contact": f"{Emoji.MOBILE_PHONE} <b>Is Mutual Contact</b>: <code>["
+    "is_bot": f"{emoji.ROBOT} <b>Is Bot</b>: <code>[%is_bot%]</code>",
+    "is_contact": f"{emoji.TELEPHONE} <b>Is Contact</b>: <code>[%is_contact%]</code>",
+    "is_mutual_contact": f"{emoji.MOBILE_PHONE} <b>Is Mutual Contact</b>: <code>["
                          f"%is_mutual_contact%]</code>",
-    "is_scam": f"{Emoji.CROSS_MARK} <b>Is scam</b>: <code>[%is_scam%]</code>",
-    "sticker_set_name": f"{Emoji.DIAMOND_WITH_A_DOT} <b>Sticker Set</b>: <code>["
+    "is_scam": f"{emoji.CROSS_MARK} <b>Is scam</b>: <code>[%is_scam%]</code>",
+    "sticker_set_name": f"{emoji.DIAMOND_WITH_A_DOT} <b>Sticker Set</b>: <code>["
                         f"%sticker_set_name%]</code>",
-    "members_count": f"{Emoji.FAMILY_MAN_WOMAN_GIRL_BOY} <b>Members</b>: "
+    "members_count": f"{emoji.FAMILY_MAN_WOMAN_GIRL_BOY} <b>Members</b>: "
                      f"<code>[%members_count%]</code>",
-    "bio": f"{Emoji.TRIDENT_EMBLEM} <b>Bio</b>: <code>[%bio%]</code>",
+    "bio": f"{emoji.TRIDENT_EMBLEM} <b>Bio</b>: <code>[%bio%]</code>",
 }
 
 
 @Client.on_message(
-    Filters.user("self") & Filters.command("chatinfo", prefixes=prefixes)
+    filters.user("self") & filters.command("chatinfo", prefixes=prefixes)
 )
 def chatinfo_command(c, msg):
     target = c.get_chat(msg.chat.id)
-    message = "{} Info {}\n\n".format(Emoji.INFORMATION, Emoji.INFORMATION)
+    message = "{} Info {}\n\n".format(emoji.INFORMATION, emoji.INFORMATION)
     for key in chatinfo_message:
         try:
             message += (

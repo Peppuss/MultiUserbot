@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pyrogram import Message
+from pyrogram.types import Message
 
 
 def ArgumentOrReply(msg: Message, offset: int = 0) -> Optional[str]:

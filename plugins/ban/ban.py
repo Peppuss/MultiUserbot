@@ -1,15 +1,15 @@
 import time
 
-from pyrogram import Client, Filters, Emoji
+from pyrogram import Client, filters, emoji
 
 from main import prefixes
 
-banned = Filters.user()
+banned = filters.user()
 to_delete = {}
 last_msg = {}
 
 
-@Client.on_message(Filters.private & banned & ~Filters.user("self"), group=-1)
+@Client.on_message(filters.private & banned & ~filters.user("self"), group=-1)
 def delete_banned(c, msg):
     if msg.chat.id not in to_delete:
         to_delete[msg.chat.id] = []
@@ -30,23 +30,23 @@ def delete_banned(c, msg):
 
 
 @Client.on_message(
-    Filters.private & Filters.user("self") & Filters.command("ban", prefixes=prefixes)
+    filters.private & filters.user("self") & filters.command("ban", prefixes=prefixes)
 )
 def ban_command_private(c, msg):
     banned.add(msg.chat.id)
-    msg.edit_text("{} Banned {}".format(Emoji.NO_ENTRY, msg.chat.id))
+    msg.edit_text("{} Banned {}".format(emoji.NO_ENTRY, msg.chat.id))
 
 
 @Client.on_message(
-    Filters.private & Filters.user("self") & Filters.command("unban", prefixes=prefixes)
+    filters.private & filters.user("self") & filters.command("unban", prefixes=prefixes)
 )
 def unban_command_private(c, msg):
     banned.remove(msg.chat.id)
-    msg.edit_text("{} Unbanned {}".format(Emoji.HEAVY_CHECK_MARK, msg.chat.id))
+    msg.edit_text("{} Unbanned {}".format(emoji.CHECK_MARK_BUTTON, msg.chat.id))
 
 
 @Client.on_message(
-    Filters.group & Filters.user("self") & Filters.command("ban", prefixes=prefixes)
+    filters.group & filters.user("self") & filters.command("ban", prefixes=prefixes)
 )
 def ban_command_group(c, msg):
     if msg.reply_to_message:
@@ -65,13 +65,13 @@ def ban_command_group(c, msg):
         except Exception as e:
             msg.edit_text(str(e))
         else:
-            msg.edit_text("{} Banned {}".format(Emoji.NO_ENTRY, target))
+            msg.edit_text("{} Banned {}".format(emoji.NO_ENTRY, target))
     else:
         msg.edit_text("Not enough permissions.")
 
 
 @Client.on_message(
-    Filters.group & Filters.user("self") & Filters.command("unban", prefixes=prefixes)
+    filters.group & filters.user("self") & filters.command("unban", prefixes=prefixes)
 )
 def unban_command_group(c, msg):
     if msg.reply_to_message:
@@ -91,6 +91,6 @@ def unban_command_group(c, msg):
         except Exception as e:
             msg.edit_text(str(e))
         else:
-            msg.edit_text("{} Unbanned {}".format(Emoji.HEAVY_CHECK_MARK, target))
+            msg.edit_text("{} Unbanned {}".format(emoji.CHECK_MARK_BUTTON, target))
     else:
         msg.edit_text("Not enough permissions")

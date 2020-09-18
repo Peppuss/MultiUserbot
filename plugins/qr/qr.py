@@ -1,11 +1,12 @@
 import urllib.parse
 
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from main import prefixes
 
 
-@Client.on_message(Filters.user("self") & Filters.command("qr", prefixes=prefixes))
+@Client.on_message(filters.user("self") & filters.command("qr", prefixes=prefixes))
 def qr(c: Client, msg: Message):
     if msg.reply_to_message:
         text = msg.reply_to_message.text or msg.reply_to_message.caption
