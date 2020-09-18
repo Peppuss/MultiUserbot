@@ -1,16 +1,16 @@
 import json
 import os
 
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 from main import prefixes
 
 
 @Client.on_message(
-    Filters.user("self")
+    filters.user("self")
     & (
-            Filters.command("commands", prefixes=prefixes)
-            | Filters.command("help", prefixes=prefixes)
+            filters.command("commands", prefixes=prefixes)
+            | filters.command("help", prefixes=prefixes)
     )
 )
 def commands_command(c, msg):

@@ -2,7 +2,7 @@ import random
 import string
 
 import PIL.Image
-from pyrogram import Message
+from pyrogram.types import Message
 
 
 def get_image(
@@ -10,8 +10,7 @@ def get_image(
 ) -> PIL.Image.Image:
     path = f"tmp/{name}"
     msg.download(file_name=path)
-    image = PIL.Image.open(path)
-    return image
+    return PIL.Image.open(path)
 
 
 def save_image(

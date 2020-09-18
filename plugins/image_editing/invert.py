@@ -1,13 +1,14 @@
 import PIL.Image
 import PIL.ImageOps
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from main import prefixes
 from methods.image import get_image, save_image
 
 
 @Client.on_message(
-    Filters.user("self") & Filters.reply & Filters.command("invert", prefixes=prefixes)
+    filters.user("self") & filters.reply & filters.command("invert", prefixes=prefixes)
 )
 def invert(c: Client, msg: Message):
     targetmsg: Message = msg.reply_to_message

@@ -6,7 +6,8 @@ import random
 import string
 
 import PIL.Image
-from pyrogram import Client, Filters, Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
@@ -32,7 +33,7 @@ CSS_SELECTOR = "div.tgme_widget_message.js-widget_message"
 
 
 @Client.on_message(
-    Filters.me & Filters.reply & Filters.command("msg2sticker", prefixes=prefixes)
+    filters.me & filters.reply & filters.command("msg2sticker", prefixes=prefixes)
 )
 def msg2sticker(c: Client, msg: Message):
     targetmsg = msg.reply_to_message

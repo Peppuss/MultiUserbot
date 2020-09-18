@@ -3,12 +3,12 @@ import io
 import sys
 import traceback
 
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 from main import prefixes
 
 
-@Client.on_message(Filters.user("self") & Filters.command("exec", prefixes=prefixes))
+@Client.on_message(filters.user("self") & filters.command("exec", prefixes=prefixes))
 def exec_command(c, msg):
     if len(msg.command) < 2:
         msg.edit_text(

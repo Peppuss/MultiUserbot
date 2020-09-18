@@ -2,8 +2,8 @@ import random
 import string
 
 import PIL.Image
-from pyrogram import Client, Filters
-from pyrogram import Message
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from main import prefixes
 
@@ -54,9 +54,9 @@ def generate_ascii_art(
 
 
 @Client.on_message(
-    Filters.reply
-    & Filters.user("self")
-    & Filters.command("asciiart", prefixes=prefixes)
+    filters.reply
+    & filters.user("self")
+    & filters.command("asciiart", prefixes=prefixes)
 )
 def asciiart(c, msg):
     # Check if the message replied to is valid

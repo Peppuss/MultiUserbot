@@ -22,9 +22,10 @@ class Wikipedia:
         :return:
         """
 
-        if "-1" in requests.get(self.apiurl.format(page)).json()["query"]["pages"]:
-            return False
-        return True
+        return (
+            "-1"
+            not in requests.get(self.apiurl.format(page)).json()["query"]["pages"]
+        )
 
     def getpage(self, page: str, limit: int = 5, lang: str = "en") -> str:
 

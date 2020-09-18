@@ -8,9 +8,7 @@ class InternalServerError(Exception):
 
 
 class ImageUpscaler:
-
     """Class to upscale images."""
-
     def __init__(self):
 
         """Initialize the class."""

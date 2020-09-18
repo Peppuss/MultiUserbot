@@ -1,4 +1,4 @@
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 
 from main import prefixes
 from methods.Wiki import Wikipedia
@@ -8,7 +8,7 @@ language = "en"
 
 
 @Client.on_message(
-    Filters.user("self") & Filters.command("wikipedia", prefixes=prefixes)
+    filters.user("self") & filters.command("wikipedia", prefixes=prefixes)
 )
 def wikipedia_command(c, msg):
     global language
@@ -31,7 +31,7 @@ def wikipedia_command(c, msg):
 
 
 @Client.on_message(
-    Filters.user("self") & Filters.command("wikipedialang", prefixes=prefixes)
+    filters.user("self") & filters.command("wikipedialang", prefixes=prefixes)
 )
 def wikipedialang_command(c, msg):
     global language

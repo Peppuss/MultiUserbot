@@ -1,5 +1,5 @@
 requests~=2.24.0
-https://github.com/pyrogram/pyrogram/archive/develop.zip
+pyrogram==1.0.7
 bs4~=0.0.1
 lxml~=4.5.2
 TgCrypto~=1.2.1
@@ -8,3 +8,4 @@ beautifulsoup4~=4.9.1
 Pillow~=7.2.0
 telegraph~=1.4.1
 selenium~=3.141.0
+ffmpeg-python==0.2.0

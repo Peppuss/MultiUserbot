@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from pyrogram import Client, Filters, Emoji
+from pyrogram import Client, filters, emoji
 
 from main import prefixes
 
@@ -38,19 +38,19 @@ def tinyurl(url, alias=""):
         return tinyurl(url, alias)
 
 
-# Filters.user("self") &
+# filters.user("self") &
 
 
-@Client.on_message(Filters.reply & Filters.command("short", prefixes=prefixes))
+@Client.on_message(filters.reply & filters.command("short", prefixes=prefixes))
 def short_command(c, msg):
     msg.edit_text("Shortening...")
     c.send_chat_action(msg.chat.id, "typing")
     urls = extracturls(msg.reply_to_message)
-    message = f"{Emoji.LINK} Shortener {Emoji.LINK}\n\n{Emoji.GLOBE_WITH_MERIDIANS} Results:\n"
+    message = f"{emoji.LINK} Shortener {emoji.LINK}\n\n{emoji.GLOBE_WITH_MERIDIANS} Results:\n"
     for u in urls:
         if u.startswith("http"):
             message += (
-                f"{Emoji.HEAVY_MINUS_SIGN} {u[:25]}\n"
-                f"{Emoji.WHITE_HEAVY_CHECK_MARK} {tinyurl(u)}\n"
+                f"{emoji.MINUS} {u[:25]}\n"
+                f"{emoji.CHECK_BOX_WITH_CHECK} {tinyurl(u)}\n"
             )
     msg.edit_text(message, disable_web_page_preview=True)
